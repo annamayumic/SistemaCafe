@@ -1,0 +1,23 @@
+<%- include('../partials/head.ejs')%>
+<%- include('../partials/navadmin.ejs') %>
+<div class="container">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+    <% produtos.forEach(prod=>{%>
+      <div class="col p-5 p-sm-3">
+        <div style="height: 250px; overflow: hidden;">
+          <img src="<%= prod.imagem %>" alt="" style="width: 100%;">
+        </div>
+        <h2 class="py-2"> <%= prod.titulo%></h2>
+        <h2 class="">R$ <%= prod.preco%></h2>
+        <a href="/produpdate"><button class="btn btn-warning">editar</button></a>
+        <a href="/proddelete"><button class="btn btn-danger">Deletar</button></a>
+      </div>
+        
+    <%})%>
+
+  </div>
+ 
+
+</div>
+<%- include('../partials/foot.ejs')%>
+

@@ -1,0 +1,47 @@
+<%- include('../partials/head.ejs')%>
+<div class="container py-5">
+  <a href="/" class=""><button class="btn btn-primary">voltar para Inicio</button></a>
+</div>
+
+<div class="container">
+  <div>
+    <h3>Logar Mesa:</h3>
+  </div>
+  <div>
+    <% clientes.forEach(cliente=>{%>
+      <a href="/clientes/clientes/<%=cliente.numero%>"><button class="btn btn-primary">MESA <%= cliente.numero %></button></a>
+    <%}) %>
+    
+  </div>
+</div>
+<br><br>
+
+
+<div class="container">
+  <div>
+    <h3>Nova Mesa:</h3>
+  </div>
+  <form class="form-group p-5 bg-light" method="post" action="/novaMesa"><br>
+    <label for="numero">Adicionar mesa:</label>
+    <input type="number" name="numero"><br><br>
+    <button class="btn btn-primary" type="submit">Enviar</button>
+  </form>
+  <br>
+  <a href="/" class=" px-5"><button class="btn btn-primary">voltar para Inicio</button></a>
+</div><br><br>
+
+<div class="container">
+  <div>
+    <h3>Deletar Mesa:</h3>fazer conection desse button
+  </div>
+  <div>
+    <% clientes.forEach(cliente=>{%>
+      <button class="btn btn-danger">MESA <%= cliente.numero %></button>
+    <%}) %>
+    
+  </div>
+</div>
+<br><br>
+
+<%- include('../partials/foot.ejs')%>
+ 

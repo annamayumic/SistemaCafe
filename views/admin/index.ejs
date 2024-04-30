@@ -1,0 +1,17 @@
+<%- include('../partials/head.ejs')%>
+<%- include('../partials/navadmin.ejs') %>
+<div class="container">
+  <a href="/" class=""><button class="btn btn-primary">voltar para Inicio</button></a>
+</div>
+<div class="container p-5 m-5">
+  <div class="list">
+    <h1>admin page</h1>
+  </div>
+  <br>
+  <div class="d-flex flex-column">
+    <a class="my-3" href="../admin/construtor"><button class="btn btn-primary"> ir para construtor</button></a>
+    <a href="../admin/produtos" class="my-3"><button class="btn btn-primary"> editar produtos</button></a>(criar botoes de editar e deletar)
+    <a href="../admin/caixa" class="my-3"><button class="btn btn-primary">caixa</button></a>(recebe lista de pedidos realizados por cada user)
+  </div>
+</div>
+<%- include('../partials/foot.ejs')%>
