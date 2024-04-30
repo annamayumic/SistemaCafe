@@ -32,7 +32,7 @@ app.get('/admin/produtos', (req,res)=>{
 app.get('/admin/construtor', (req, res)=>{
   res.render('admin/construtor.ejs')
 })
-app.post('/novoProd', (req,res)=>{
+app.post('/admin/novoProd', (req,res)=>{
   let titulo = req.body.titulo;
   let preco = req.body.preco;
   let imagem = req.body.imagem;
@@ -49,6 +49,35 @@ app.post('/novoProd', (req,res)=>{
 
 app.get('/admin/index', (req, res)=>{
   res.render('admin/index.ejs')
+})
+
+app.get('/admin/produpdate/:id', (req,res)=>{
+  let id = req.params.id
+  res.render('admin/edit.ejs')
+
+  Produtos.findByPk(id).then(produtos=>{
+    if(produtos != undefined){
+      res.render('admin/edit.ejs', {produtos:produtos})
+    }else{
+      res.redirect("/admin/produtos")
+    }
+  }).catch(erro =>{
+    res.redirect("/admin/produtos")
+  })
+
+})
+
+app.post('/admin/updated', (req,res)=>{
+  let id = req.body.id
+  let titulo = req.body.titulo;
+  let preco = req.body.preco;
+  let imagem = req.body.imagem;
+  let status = req.body.status;
+
+  Produtos.update({titulo:titulo, preco:preco, imagem:imagem, status:status}, {where: {id:id}}).then(()=>{
+    res.redirect("/admin/produtos");
+  })
+
 })
 
 app.get('/clientes/clientes', (req, res)=>{

@@ -7,10 +7,14 @@
         <div style="height: 250px; overflow: hidden;">
           <img src="<%= prod.imagem %>" alt="" style="width: 100%;">
         </div>
+        <% if(prod.status === true){%>
+          <div class="bg-success">Ativo</div>
+        <%} %>
         <h2 class="py-2"> <%= prod.titulo%></h2>
         <h2 class="">R$ <%= prod.preco%></h2>
-        <a href="/produpdate"><button class="btn btn-warning">editar</button></a>
+        <a href="/admin/produpdate/<%=prod.id%>"><button class="btn btn-warning">editar</button></a>
         <a href="/proddelete"><button class="btn btn-danger">Deletar</button></a>
+        
       </div>
         
     <%})%>

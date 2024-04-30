@@ -1,5 +1,23 @@
 <%- include('../partials/head.ejs') %>
-<%- include('../partials/navcliente.ejs') %>
+<header class="d-flex flex-wrap justify-content-between py-3 mb-4 border-bottom bg-primary">
+  <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none text-white">
+    <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+    <span class="fs-4">Logo</span>
+  </a>
+  <ul class="nav nav-pills px-3 ">
+    <li class="nav-item"><a href="#" class="nav-link text-bg-primary">historico</a></li>
+    <li class="nav-item"><button class="nav-link text-bg-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Carrinho</button></li>
+    <li>
+      <div class="position-relative">
+        <div id="counter" style="height: 30px; width: 30px; background-color: red; right: 2px; top: 2rem;" class="rounded-5 position-absolute text-center text-white">0</div>
+      </div>
+    </li>
+    
+  </ul>
+   
+</header>
+
+
 
 <div class="container">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
@@ -10,16 +28,11 @@
         </div>
         <h2 class="py-2"> <%= prod.titulo%></h2>
         <h2 class="">R$ <%= prod.preco%></h2>
-        <button class="btn btn-primary" id="<%=prod.id %>" onclick="add(id)">add</button>
+        <button class="btn btn-primary" id="<%=prod.id %>" name="<%=prod.titulo%>" value="<%=prod.preco%>" onclick="add(id, name, value)">add</button>
       </div>
     <%})%>
   </div>
-  <div>
-    <h3>Carrinho:</h3>
-    
-    <button class="btn btn-primary">enviar</button>
-  </div>
-  
+
 
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
@@ -28,7 +41,15 @@
     </div>
     <div class="offcanvas-body">
       <ul id="lista"></ul>
+      
     </div>
+    <div class="offcanvas-foot bg-body-secondary">
+      <div class="ps-3 py-4 d-flex">
+        <h3 >Total:</h3>
+        <h3 class="ps-4" id="total">0,00</h3>
+      </div>
+    </div>
+
   </div>
 
 
@@ -36,14 +57,41 @@
 
 <script>
   let pedido = [];
-  
-  function add(id){
+  let total = []
+  function add(id, name, value){
     pedido.push(id);
+    total.push(Number(value))
+    console.log(total)
     console.log(pedido)
     let ul = document.getElementById('lista')
     let li = document.createElement('li')
-    li.innerHTML = `${id}`
+    li.classList.add('list-unstyled')
+    li.innerHTML = `<div class="d-flex justify-content-between">
+  <p class="ps-3 ">${name}</p>
+  <p class=px-3>R$ ${value}</p>
+</div>`
     ul.appendChild(li)
+let valorTotal = document.getElementById('total');
+  const initialValue = 0;
+    const sumWithInitial = total.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    initialValue,
+    );
+    valorTotal.innerHTML=`
+      <h3>${sumWithInitial},00<h3>
+    `
+    console.log(sumWithInitial)
+    let counter = document.getElementById('counter')
+      
+      if(pedido.length !=0){
+        counter.innerHTML=`${pedido.length}`
+      }
   }
+
+  
+  
+  
 </script>
 <%- include('../partials/foot.ejs') %>
+
+<div class="justify-content-between"></div>
