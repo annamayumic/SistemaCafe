@@ -52,10 +52,9 @@ app.get('/admin/index', (req, res)=>{
 })
 
 app.get('/admin/produpdate/:id', (req,res)=>{
-  let id = req.params.id
-  res.render('admin/edit.ejs')
+  let id = req.params.id;
 
-  Produtos.findByPk(id).then(produtos=>{
+  Produtos.findOne({where:{id:id}}).then(produtos=>{
     if(produtos != undefined){
       res.render('admin/edit.ejs', {produtos:produtos})
     }else{
@@ -67,14 +66,36 @@ app.get('/admin/produpdate/:id', (req,res)=>{
 
 })
 
+app.get('/admin/proddelete/:id', (req,res)=>{
+  let id = req.params.id;
+  if(id!= undefined){
+    if(!isNaN(id)){
+      Produtos.destroy({
+        where:{
+          id:id
+        }
+      }).then(()=>{
+        res.redirect("/admin/produtos");
+      })
+    }else{
+      res.redirect("/admin/produtos");
+    }
+  }else{
+    res.redirect("/admin/produtos");
+  }
+
+
+})
+
+
 app.post('/admin/updated', (req,res)=>{
-  let id = req.body.id
+  let id = req.params.id;
   let titulo = req.body.titulo;
   let preco = req.body.preco;
   let imagem = req.body.imagem;
   let status = req.body.status;
 
-  Produtos.update({titulo:titulo, preco:preco, imagem:imagem, status:status}, {where: {id:id}}).then(()=>{
+  Produtos.update({id:id, titulo:titulo, preco:preco, imagem:imagem, status:status}, {where: {id:id}}).then(()=>{
     res.redirect("/admin/produtos");
   })
 
@@ -87,7 +108,28 @@ app.get('/clientes/clientes', (req, res)=>{
  
 })
 
-app.post('/novaMesa', (req,res)=>{
+
+app.get('/clientes/mesadelete/:numero', (req,res)=>{
+  let numero = req.params.numero;
+  if(numero!= undefined){
+    if(!isNaN(numero)){
+      Clientes.destroy({
+        where:{
+          numero:numero
+        }
+      }).then(()=>{
+        res.redirect("/clientes/clientes");
+      })
+    }else{
+      res.redirect("/clientes/clientes");
+    }
+  }else{
+    res.redirect("/clientes/clientes");
+  }
+})
+
+
+app.post('/clientes/novaMesa', (req,res)=>{
   let numero = req.body.numero
   Clientes.create({
     numero:numero

@@ -4,8 +4,8 @@
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
     <% produtos.forEach(prod=>{%>
       <div class="col p-5 p-sm-3">
-        <div style="height: 250px; overflow: hidden;">
-          <img src="<%= prod.imagem %>" alt="" style="width: 100%;">
+        <div style="height: 250px; overflow: hidden; ">
+          <img src="<%= prod.imagem %>" alt="" style="width: 100%; ">
         </div>
         <% if(prod.status === true){%>
           <div class="bg-success">Ativo</div>
@@ -13,8 +13,7 @@
         <h2 class="py-2"> <%= prod.titulo%></h2>
         <h2 class="">R$ <%= prod.preco%></h2>
         <a href="/admin/produpdate/<%=prod.id%>"><button class="btn btn-warning">editar</button></a>
-        <a href="/proddelete"><button class="btn btn-danger">Deletar</button></a>
-        
+        <a href="/admin/proddelete/<%=prod.id%>"><button class="btn btn-danger">Deletar</button></a>
       </div>
         
     <%})%>

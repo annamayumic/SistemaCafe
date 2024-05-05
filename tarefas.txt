@@ -1,0 +1,10 @@
+Admin
+  caixa
+    tabela conta, mostrar lista com todos os pedidos feitos e valor final, botao de remover algum prod da tabela 
+
+
+Clientes
+  botao deletar mesa
+  tabela para pedidos contendo Id da mesa
+  historico de pedidos
+  tabela conta com a concatenacao dos pedidos da mesa

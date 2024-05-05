@@ -27,7 +27,7 @@
           <img src="<%= prod.imagem %>" alt="" style="width: 100%;">
         </div>
         <h2 class="py-2"> <%= prod.titulo%></h2>
-        <h2 class="">R$ <%= prod.preco%></h2>
+        <h2 class="">R$ <%= prod.preco%>,00</h2>
         <button class="btn btn-primary" id="<%=prod.id %>" name="<%=prod.titulo%>" value="<%=prod.preco%>" onclick="add(id, name, value)">add</button>
       </div>
     <%})%>
@@ -66,9 +66,9 @@
     let ul = document.getElementById('lista')
     let li = document.createElement('li')
     li.classList.add('list-unstyled')
-    li.innerHTML = `<div class="d-flex justify-content-between">
-  <p class="ps-3 ">${name}</p>
-  <p class=px-3>R$ ${value}</p>
+    li.innerHTML = `<div class="d-flex justify-content-between border-top border-bottom border-1 border-light-subtle pt-2">
+  <p class="ps-4">${name}</p>
+  <p class=px-3>R$ ${value},00</p>
 </div>`
     ul.appendChild(li)
 let valorTotal = document.getElementById('total');

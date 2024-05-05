@@ -21,13 +21,12 @@
   <div>
     <h3>Nova Mesa:</h3>
   </div>
-  <form class="form-group p-5 bg-light" method="post" action="/novaMesa"><br>
+  <form class="form-group p-5 bg-light" method="post" action="/clientes/novaMesa"><br>
     <label for="numero">Adicionar mesa:</label>
     <input type="number" name="numero"><br><br>
     <button class="btn btn-primary" type="submit">Enviar</button>
   </form>
   <br>
-  <a href="/" class=" px-5"><button class="btn btn-primary">voltar para Inicio</button></a>
 </div><br><br>
 
 <div class="container">
@@ -36,7 +35,7 @@
   </div>
   <div>
     <% clientes.forEach(cliente=>{%>
-      <button class="btn btn-danger">MESA <%= cliente.numero %></button>
+      <a href="/clientes/mesadelete/<%=cliente.numero%>"><button class="btn btn-danger">MESA <%= cliente.numero %></button></a>
     <%}) %>
     
   </div>
